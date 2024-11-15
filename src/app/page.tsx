@@ -1,16 +1,19 @@
 "use client"
 import styles from "./page.module.css";
-import validate from "@ooxml-tools/validate"
-import { useState } from "react";
+import validate, { ValidationResult } from "@ooxml-tools/validate"
+import { ChangeEvent, useState } from "react";
 
 export default function Home() {
   const [state, setState] = useState<"IDLE" | "PROCESSING">("IDLE")
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState<ValidationResult[]>([])
   
-  const onChangeFile = async (e) => {
+  const onChangeFile = async (e: ChangeEvent<HTMLInputElement>) => {
     setState("PROCESSING")
     try {
-      const file = e.target.files[0];
+      const file = e.target.files?.[0];
+      if (!file) {
+        throw new Error("No files provided");
+      } 
 
       const p = new Promise<ArrayBuffer>((resolve, reject) => {
         const fr = new FileReader();
@@ -19,8 +22,11 @@ export default function Home() {
         fr.readAsArrayBuffer(file);
       })
       const buffer = await p;
-      const newErrors = await validate(buffer);
+      const arr = new Uint8Array(buffer);
+      const newErrors = await validate(arr, "docx");
       setErrors(newErrors);
+    } catch (err: any) {
+      console.log(err);
     } finally {
       setState("IDLE")
     }

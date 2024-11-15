@@ -10,8 +10,8 @@
     "test": "exit 0"
   },
   "dependencies": {
-    "@ooxml-tools/file": "^0.1.3",
-    "@ooxml-tools/validate": "^0.1.12",
+    "@ooxml-tools/file": "^0.2.1",
+    "@ooxml-tools/validate": "^0.1.15",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
