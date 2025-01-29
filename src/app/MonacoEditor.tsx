@@ -1,0 +1,36 @@
+import * as monaco from 'monaco-editor';
+import { useEffect, useRef, useState } from 'react';
+
+type MonacoEditorProps = {
+    data?: string
+}
+export default function MonacoEditor ({data}: MonacoEditorProps) {
+    const ref = useRef(null);
+    const [instance, setInstance] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
+
+    useEffect(()=> {
+        if (ref.current) {
+            const monInstance = monaco.editor.create(ref.current, {
+                value: data,
+                language: 'xml',
+                readOnly: true,
+            });
+            setInstance(monInstance)
+
+            return () => {
+                setInstance(null)
+                monInstance.dispose();
+            }
+        }
+    }, [ref])
+
+    useEffect(() => {
+        if (instance && data) {
+            instance.setValue(data);
+        }
+    }, [instance, data])
+
+    return <div style={{flex: 1, overflow: "hidden", position: "relative"}}>
+        <div ref={ref} style={{height: "100%"}} />
+    </div>
+}

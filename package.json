@@ -10,11 +10,13 @@
     "test": "exit 0"
   },
   "dependencies": {
-    "@ooxml-tools/file": "^0.2.1",
-    "@ooxml-tools/validate": "^0.1.15",
+    "@ooxml-tools/file": "^0.2.9",
+    "@ooxml-tools/validate": "^0.2.4",
+    "monaco-editor": "^0.52.2",
     "next": "14.2.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "xml-formatter": "^3.6.4"
   },
   "devDependencies": {
     "@types/node": "^20",
