@@ -1,4 +1,11 @@
-# <img alt="@ooxml-tools/toolbox" height="56" src="https://github.com/user-attachments/assets/de6da13f-107e-4142-bf69-a426fb0b6fae" />
+<h1>
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://ooxml-tools.github.io/design/images/toolbox-dark.png">
+        <source media="(prefers-color-scheme: light)" srcset="https://ooxml-tools.github.io/design/images/toolbox-light.png">
+        <img alt="@ooxml-tools/toolbox" height="56" src="https://ooxml-tools.github.io/design/images/toolbox-light.png">
+    </picture>
+</h1>
+
 A toolbox app for Office Open XML files in the browser
 
 This app allows you to validate, view the contents of files in the browser.
