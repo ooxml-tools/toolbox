@@ -123,15 +123,30 @@ export default function Home() {
       </p>}
       {file && state === "IDLE" && 
       <>
-        <div>
+        <div style={{
+          padding: "8px 12px",
+          borderBottom: "solid 1px #ccc",
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+        }}>
           <label>
-            Current file&nbsp;
+            Current file
           </label>
-          <select onChange={(e) => {
+          <select style={{
+            flex: 1,
+            display: "block",
+            padding: "3px 2px",
+            border: "solid 1px #ddd",
+            borderRadius: 4,
+          }}
+          value={selectedFile ?? "__NULL__"}
+          onChange={(e) => {
             setSelectedFile(e.target.value);
           }}>
+            <option value="__NULL__" disabled={true}>--- select a file ---</option>
             {files.map(file => {
-              return <option value={file}>{file}</option>
+              return <option key={file} value={file}>{file}</option>
             })}
             
           </select>
