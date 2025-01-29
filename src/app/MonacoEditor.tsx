@@ -32,5 +32,19 @@ export default function MonacoEditor ({data}: MonacoEditorProps) {
 
     return <div style={{flex: 1, overflow: "hidden", position: "relative"}}>
         <div ref={ref} style={{height: "100%"}} />
+        {!data && <div style={{
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            background: "#eee",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "absolute",
+            left: 0,
+            top: 0,
+            zIndex: 9999,
+        }}>
+            No file selected
+        </div>}
     </div>
 }
