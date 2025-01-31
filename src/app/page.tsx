@@ -3,39 +3,12 @@ import JSZip from "jszip";
 import styles from "./page.module.css";
 import {open, formatFromFilename, OfficeOpenXml} from "@ooxml-tools/file"
 import validate, { ValidationResult } from "@ooxml-tools/validate"
-import { ChangeEvent, ChangeEventHandler, useEffect, useId, useMemo, useState } from "react";
-import MonacoEditor from "./MonacoEditor";
-import xmlFormat from 'xml-formatter';
+import { ChangeEvent, useEffect, useId, useMemo, useState } from "react";
 import Icon from '@mdi/react';
-import { mdiUpload } from '@mdi/js';
+import { mdiLoading, mdiUpload } from '@mdi/js';
+import FileViewer from "./FileViewer";
 
-type FileContentProps = {
-  file: any;
-  selected: string | null;
-}
-function FileContent ({selected, file}: FileContentProps) {
-  const [type, setType] = useState(null);
-  const [content, setContent] = useState("");
-  useEffect(() => {
-    if (file && selected) {
-      if (selected.endsWith(".xml")) {
-        (async () => {
-          setContent(await file.readFile(selected, "string"))
-        })();
-      }
-    }
-  }, [selected, file])
-
-  if (!selected) {
-    return <div>...</div>
-  }
-
-  return <div>
-    <textarea defaultValue={content}/>
-  </div>
-}
-
-type UploadButtonProps = JSX.IntrinsicElements["label"] & {children: React.ReactNode, onChange: React.ChangeEvent<HTMLInputElement>}
+type UploadButtonProps = {children: React.ReactNode, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void}
 function UploadButton ({onChange, children, ...rest}: UploadButtonProps) {
   const forId = useId();
   return <div>
@@ -93,17 +66,6 @@ export default function Home() {
     }
     return [];
   }, [file]);
-  
-  const [contents, setContents] = useState("");
-  useEffect(() => {
-    if (file && selectedFile) {
-      (async () => {
-        setContents(
-          xmlFormat(await file.readFile(selectedFile, "string"))
-        )
-      })();
-    }
-  }, [file, selectedFile])
 
   return (
     <div style={{height: "100%", position: "relative", display: "flex", flexDirection: "column"}}>
@@ -156,7 +118,7 @@ export default function Home() {
       position: "relative",
       overflow: "hidden",
     }}>
-      {!file &&
+      {!file && state === "IDLE" &&
         <div style={{flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#eee"}}>
           <div style={{paddingBottom: "4em"}}>
             <UploadButton onChange={onChangeFile}>
@@ -166,13 +128,17 @@ export default function Home() {
           </div>
         </div>
       }
-      {state === "PROCESSING" && <p>
-        Loading...
-      </p>}
+      {state === "PROCESSING" && 
+      <div style={{flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#eee"}}>
+        <p style={{display: "flex", flexDirection: "column", alignItems: "center", gap: 8}}>
+          <Icon path={mdiLoading} size={1} spin={0.7} />
+          Loading
+        </p>
+      </div>}
       {file && state === "IDLE" && 
       <>
         <div style={{display: "grid", gridTemplateRows: "50% 50%", flex: 1, height: "100%"}}>
-          <MonacoEditor data={contents} />
+          <FileViewer file={file} selectedFile={selectedFile} />
           <div style={{borderTop: "solid 2px #ddd", overflowY: "scroll"}}>
             {errors.length < 1 && <p>No errors...</p>}
             {errors.length > 0 && <div>

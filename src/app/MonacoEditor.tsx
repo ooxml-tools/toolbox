@@ -1,17 +1,29 @@
 import * as monaco from 'monaco-editor';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import xmlFormat from 'xml-formatter';
 
 type MonacoEditorProps = {
-    data?: string
+    data?: ArrayBuffer
 }
 export default function MonacoEditor ({data}: MonacoEditorProps) {
     const ref = useRef(null);
     const [instance, setInstance] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
 
+    const xml = useMemo(() => {
+        const decoder = new TextDecoder()
+        const foo = decoder.decode(data);
+        try {
+            return data ? xmlFormat(foo) : ""
+        } catch (err) {
+            console.log(err);
+            return ""
+        }
+    }, [data])
+
     useEffect(()=> {
         if (ref.current) {
             const monInstance = monaco.editor.create(ref.current, {
-                value: data,
+                value: "",
                 language: 'xml',
                 readOnly: true,
                 automaticLayout: true,
@@ -33,14 +45,14 @@ export default function MonacoEditor ({data}: MonacoEditorProps) {
     }, [ref])
 
     useEffect(() => {
-        if (instance && data) {
-            instance.setValue(data);
+        if (instance && xml) {
+            instance.setValue(xml);
         }
-    }, [instance, data])
+    }, [instance, xml])
 
     return <div style={{flex: 1, overflow: "hidden", position: "relative"}}>
         <div ref={ref} style={{height: "100%", width: "100%"}} />
-        {!data && <div style={{
+        {!xml && <div style={{
             height: "100%",
             width: "100%",
             display: "flex",
