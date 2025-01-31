@@ -14,6 +14,14 @@ export default function MonacoEditor ({data}: MonacoEditorProps) {
                 value: data,
                 language: 'xml',
                 readOnly: true,
+                automaticLayout: true,
+            }, {
+                // openerService: {
+                //     open: function (resource, options) {
+                //         console.log("open", {resource, options})
+                //         // do something here, resource will contain the Uri
+                //     }
+                // }
             });
             setInstance(monInstance)
 
@@ -31,7 +39,7 @@ export default function MonacoEditor ({data}: MonacoEditorProps) {
     }, [instance, data])
 
     return <div style={{flex: 1, overflow: "hidden", position: "relative"}}>
-        <div ref={ref} style={{height: "100%"}} />
+        <div ref={ref} style={{height: "100%", width: "100%"}} />
         {!data && <div style={{
             height: "100%",
             width: "100%",

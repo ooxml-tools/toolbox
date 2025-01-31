@@ -3,9 +3,11 @@ import JSZip from "jszip";
 import styles from "./page.module.css";
 import {open, formatFromFilename, OfficeOpenXml} from "@ooxml-tools/file"
 import validate, { ValidationResult } from "@ooxml-tools/validate"
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useEffect, useId, useMemo, useState } from "react";
 import MonacoEditor from "./MonacoEditor";
 import xmlFormat from 'xml-formatter';
+import Icon from '@mdi/react';
+import { mdiUpload } from '@mdi/js';
 
 type FileContentProps = {
   file: any;
@@ -30,6 +32,17 @@ function FileContent ({selected, file}: FileContentProps) {
 
   return <div>
     <textarea defaultValue={content}/>
+  </div>
+}
+
+type UploadButtonProps = JSX.IntrinsicElements["label"] & {children: React.ReactNode, onChange: React.ChangeEvent<HTMLInputElement>}
+function UploadButton ({onChange, children, ...rest}: UploadButtonProps) {
+  const forId = useId();
+  return <div>
+    <label htmlFor={forId} style={{display: "flex", gap: 6, alignItems: "center"}}>
+      {children}
+    </label>
+    <input {...rest} id={forId} type="file" style={{display: "none"}} onChange={onChange} />
   </div>
 }
 
@@ -94,12 +107,13 @@ export default function Home() {
 
   return (
     <div style={{height: "100%", position: "relative", display: "flex", flexDirection: "column"}}>
-      <header style={{borderBottom: "solid 1px #eee", display: "flex", padding: "8px 12px"}}>
+      <div style={{borderBottom: "solid 1px #ccc",}}>
+      <header style={{borderBottom: "solid 1px #eee", display: "flex", padding: "8px 12px", overflow: "hidden"}}>
         <h1 style={{margin: 0, display: "flex"}}>
           <img
             alt="@ooxml-tools/toolbox"
             src="https://ooxml-tools.github.io/design/images/toolbox-light.png"
-            height="56"
+            height="38"
           />
         </h1>
         <div style={{flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
@@ -107,25 +121,8 @@ export default function Home() {
           <input type="file" onChange={onChangeFile} />
         </div>
       </header>
-    <main className={styles.main} style={{flex: 1, display: "flex", flexDirection: "column"}}>
-      {!file &&
-        <div style={{flex: 1, display: "flex", alignItems: "center", justifyContent: "center"}}>
-          <div style={{paddingBottom: "4em"}}>
-            <p>
-              Open a new file
-            </p>
-            <input type="file" onChange={onChangeFile} />
-          </div>
-        </div>
-      }
-      {state === "PROCESSING" && <p>
-        Loading...
-      </p>}
-      {file && state === "IDLE" && 
-      <>
-        <div style={{
+      {state === "IDLE" && file && <div style={{
           padding: "8px 12px",
-          borderBottom: "solid 1px #ccc",
           display: "flex",
           alignItems: "center",
           gap: 8,
@@ -150,14 +147,37 @@ export default function Home() {
             })}
             
           </select>
+        </div>}
+      </div>
+    <main className={styles.main} style={{
+      flex: 1,
+      display: "flex",
+      flexDirection: "column",
+      position: "relative",
+      overflow: "hidden",
+    }}>
+      {!file &&
+        <div style={{flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#eee"}}>
+          <div style={{paddingBottom: "4em"}}>
+            <UploadButton onChange={onChangeFile}>
+              <Icon path={mdiUpload} size={1} />
+              Custom Upload
+            </UploadButton>
+          </div>
         </div>
-        <div style={{display: "grid", gridTemplateRows: "50% 50%", flex: 1, overflowY: "auto"}}>
+      }
+      {state === "PROCESSING" && <p>
+        Loading...
+      </p>}
+      {file && state === "IDLE" && 
+      <>
+        <div style={{display: "grid", gridTemplateRows: "50% 50%", flex: 1, height: "100%"}}>
           <MonacoEditor data={contents} />
-          <div style={{borderTop: "solid 2px #ddd"}}>
+          <div style={{borderTop: "solid 2px #ddd", overflowY: "scroll"}}>
             {errors.length < 1 && <p>No errors...</p>}
             {errors.length > 0 && <div>
               {errors.map((error, errorIdx) => {
-                return <div key={errorIdx} style={{borderBottom: "solid 1px #ddd", padding: 8}}>
+                return <div key={errorIdx} style={{borderBottom: "solid 1px #ddd", padding: 8, wordBreak: "break-word"}}>
                   <div>
                     <span style={{color: "blue"}}>{error.path.partUri}</span><span style={{color: "red"}}>{error.path.xpath}</span>
                   </div>
