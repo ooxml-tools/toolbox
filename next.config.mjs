@@ -3,6 +3,7 @@ import MonacoEditorWebpackPlugin from 'monaco-editor-webpack-plugin';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
+    basePath: '/toolbox',
     webpack: (config, options) => {
         // See <https://github.com/wojtekmaj/react-pdf/issues/1824>
         config.optimization.minimize = false
