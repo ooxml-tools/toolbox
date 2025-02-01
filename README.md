@@ -13,6 +13,7 @@ This app allows you to validate, view the contents of files in the browser.
 > [!CAUTION]
 > This is a work in progress and only designed to show off the underlying libraries
 
+You can see a demo at <https://ooxml-tools.github.io/toolbox/>
 
 ## Development
 
