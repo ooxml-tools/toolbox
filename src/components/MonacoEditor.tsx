@@ -1,4 +1,5 @@
-import * as monaco from 'monaco-editor';
+'use client'
+import {editor} from 'monaco-editor';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import xmlFormat from 'xml-formatter';
 
@@ -7,13 +8,12 @@ type MonacoEditorProps = {
 }
 export default function MonacoEditor ({data}: MonacoEditorProps) {
     const ref = useRef(null);
-    const [instance, setInstance] = useState<monaco.editor.IStandaloneCodeEditor | null>(null);
+    const [instance, setInstance] = useState<editor.IStandaloneCodeEditor | null>(null);
 
     const xml = useMemo(() => {
-        const decoder = new TextDecoder()
-        const foo = decoder.decode(data);
+        const decoder = new TextDecoder();
         try {
-            return data ? xmlFormat(foo) : ""
+            return data ? xmlFormat(decoder.decode(data)) : ""
         } catch (err) {
             console.log(err);
             return ""
@@ -22,18 +22,11 @@ export default function MonacoEditor ({data}: MonacoEditorProps) {
 
     useEffect(()=> {
         if (ref.current) {
-            const monInstance = monaco.editor.create(ref.current, {
+            const monInstance = editor.create(ref.current, {
                 value: "",
                 language: 'xml',
                 readOnly: true,
                 automaticLayout: true,
-            }, {
-                // openerService: {
-                //     open: function (resource, options) {
-                //         console.log("open", {resource, options})
-                //         // do something here, resource will contain the Uri
-                //     }
-                // }
             });
             setInstance(monInstance)
 

@@ -1,9 +1,13 @@
+"use client"
 import { useEffect, useState } from "react";
-import MonacoEditor from "./MonacoEditor";
 import { OfficeOpenXml } from "@ooxml-tools/file";
 import ImageViewer from "./ImageViewer";
 import UnknownState from "./UnknownState";
 import EmptyState from "./EmptyState";
+import dynamic from "next/dynamic";
+const MonacoEditor = dynamic(() => import('./MonacoEditor'), {
+    ssr: false,
+  })
 
 type FileViewerProps = {
     file?: OfficeOpenXml
