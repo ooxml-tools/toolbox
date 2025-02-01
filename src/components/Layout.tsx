@@ -1,7 +1,7 @@
 import React from "react";
 import FileSelector from "./FileSelector";
 import UploadButton from "./UploadButton";
-import { mdiUpload } from "@mdi/js";
+import { mdiGithub, mdiUpload } from "@mdi/js";
 import Icon from "@mdi/react";
 
 export type LayoutProps = {
@@ -23,7 +23,18 @@ export default function Layout({ selectedFile, files, onChangeSelected, onChange
                             height="38"
                         />
                     </h1>
-                    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 16 }}>
+                        <a href="https://github.com/ooxml-tools/toolbox" style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 6,
+                            textDecoration: "none",
+                            color: "inherit",
+                            cursor: "pointer",
+                        }}>
+                            <Icon path={mdiGithub} size={1} />
+                            Github
+                        </a>
                         <UploadButton onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) {
