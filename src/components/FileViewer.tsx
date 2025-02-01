@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import MonacoEditor from "./MonacoEditor";
 import { OfficeOpenXml } from "@ooxml-tools/file";
 import ImageViewer from "./ImageViewer";
-import Icon from "@mdi/react";
-import { mdiAlertCircleOutline } from "@mdi/js";
+import UnknownState from "./UnknownState";
+import EmptyState from "./EmptyState";
 
 type FileViewerProps = {
     file?: OfficeOpenXml
@@ -37,15 +37,8 @@ export default function FileViewer ({file, selectedFile}: FileViewerProps) {
             justifyContent: "center",
             background: "#eee"
         }}>
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 4,
-            }}>
-                <Icon path={mdiAlertCircleOutline} size={2} color={"#aaa"} />
-                Can&apos;t display file
-            </div>
+            {contents && <UnknownState />}
+            {!contents && <EmptyState />}
         </div>
     }
 }

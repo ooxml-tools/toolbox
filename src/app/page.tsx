@@ -65,6 +65,7 @@ export default function Home() {
   return (
     <Layout
       files={files}
+      selectedFile={selectedFile}
       onChangeSelected={setSelectedFile}
       onChangeFile={onChangeFile}>
       {!file && state === "IDLE" &&
@@ -77,7 +78,7 @@ export default function Home() {
               }
             }}>
               <Icon path={mdiUpload} size={1} />
-              Custom Upload
+              Upload file
             </UploadButton>
           </div>
         </div>
@@ -86,9 +87,9 @@ export default function Home() {
       <div style={{flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#eee"}}>
         <LoadingState />
       </div>}
-      {file && state === "IDLE" && <div style={{display: "grid", gridTemplateRows: "50% 50%", flex: 1, height: "100%"}}>
+      {file && state === "IDLE" && <div style={{display: "flex", flexDirection: "column", flex: 1, height: "100%"}}>
         <FileViewer file={file} selectedFile={selectedFile} />
-        <div style={{borderTop: "solid 2px #ddd", overflowY: "scroll"}}>
+        <div style={{borderTop: "solid 2px #ddd", overflowY: "hidden", maxHeight: "50%"}}>
           <ValidationErrors errors={errors} />
         </div>
       </div>}

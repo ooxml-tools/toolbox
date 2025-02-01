@@ -1,5 +1,8 @@
 import React from "react";
 import FileSelector from "./FileSelector";
+import UploadButton from "./UploadButton";
+import { mdiUpload } from "@mdi/js";
+import Icon from "@mdi/react";
 
 export type LayoutProps = {
     selectedFile?: string | null;
@@ -21,13 +24,15 @@ export default function Layout({ selectedFile, files, onChangeSelected, onChange
                         />
                     </h1>
                     <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-
-                        <input type="file" onChange={(e) => {
+                        <UploadButton onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) {
                                 onChangeFile(file)
                             }
-                         }} />
+                        }}>
+                            <Icon path={mdiUpload} size={1} />
+                            Upload file
+                        </UploadButton>
                     </div>
                 </header>
                 <div style={{
