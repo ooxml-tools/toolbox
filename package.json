@@ -14,7 +14,7 @@
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@ooxml-tools/file": "^0.3.1",
-    "@ooxml-tools/validate": "^0.2.4",
+    "@ooxml-tools/validate": "^0.2.5",
     "comlink": "^4.4.2",
     "monaco-editor": "^0.52.2",
     "next": "14.2.5",
