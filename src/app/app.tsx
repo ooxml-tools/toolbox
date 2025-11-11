@@ -49,8 +49,22 @@ export default function App() {
       }
 
       if (workerRef.current) {
-        const newErrors = await workerRef.current(arr, "docx");
-        setErrors(newErrors);
+        try {
+          const newErrors = await workerRef.current(arr, "docx");
+          setErrors(newErrors);
+        } catch(err: any) {
+          setErrors([
+            {
+              description: err.toString(),
+              path: {
+                  xpath: "unknown",
+                  partUri: "unknown",
+              },
+              id: "global_error",
+              errorType: -1
+            }
+          ]);
+        }
       }
     } catch (err: any) {
       console.log(err);
