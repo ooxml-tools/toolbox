@@ -1,7 +1,7 @@
 'use client'
 import JSZip from "jszip";
 import {open, formatFromFilename, OfficeOpenXml} from "@ooxml-tools/file"
-import { ValidationResult } from "@ooxml-tools/validate"
+import { getFileFormatFromName, ValidationResult } from "@ooxml-tools/validate"
 import { useEffect, useMemo, useRef, useState } from "react";
 import Icon from '@mdi/react';
 import { mdiUpload } from '@mdi/js';
@@ -50,7 +50,7 @@ export default function App() {
 
       if (workerRef.current) {
         try {
-          const newErrors = await workerRef.current(arr, "docx");
+          const newErrors = await workerRef.current(arr, getFileFormatFromName(file.name));
           setErrors(newErrors);
         } catch(err: any) {
           setErrors([
