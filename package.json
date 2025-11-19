@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start --webpack",
     "lint": "next lint",
     "test": "exit 0"
   },
@@ -16,20 +16,20 @@
     "@ooxml-tools/file": "^0.3.1",
     "@ooxml-tools/validate": "^0.2.5",
     "comlink": "^4.4.2",
-    "monaco-editor": "^0.52.2",
-    "next": "14.2.5",
-    "react": "^18",
-    "react-dom": "^18",
+    "monaco-editor": "^0.54.0",
+    "next": "^16.0.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "xml-formatter": "^3.6.4",
     "xml2json": "^0.12.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
     "@types/xml2json": "^0.11.6",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "16.0.3",
     "monaco-editor-webpack-plugin": "^7.1.0",
     "typescript": "^5"
   }
