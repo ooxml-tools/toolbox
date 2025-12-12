@@ -8,6 +8,17 @@ import dynamic from "next/dynamic";
 import { editor } from "monaco-editor";
 const MonacoEditor = dynamic(() => import('./MonacoEditor'), {
     ssr: false,
+    loading: () => (
+        <div style={{
+            display: "flex",
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#eee"
+        }}>
+            Loading editor...
+        </div>
+    ),
   })
 
 type FileViewerProps = {
