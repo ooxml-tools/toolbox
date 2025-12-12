@@ -5,7 +5,7 @@ import xmlFormat from 'xml-formatter';
 
 type MonacoEditorProps = {
     data?: ArrayBuffer;
-    readOnly: boolean;
+    readOnly?: boolean;
     onChange?: (editor: editor.IStandaloneCodeEditor) => void;
 }
 export default function MonacoEditor ({data, readOnly, onChange}: MonacoEditorProps) {

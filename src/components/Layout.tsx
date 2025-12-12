@@ -5,16 +5,18 @@ import { mdiDownload, mdiGithub, mdiUpload } from "@mdi/js";
 import Icon from "@mdi/react";
 import { IconButtonAsLink } from "./IconButtonALink";
 import { IconButton } from "./IconButton";
+import { OfficeOpenXml } from "@ooxml-tools/file";
 
 export type LayoutProps = {
     selectedFile?: string | null;
     files: string[];
+    file?: OfficeOpenXml | null; 
     onChangeSelected: (newSelectedFile: string) => void;
     onChangeFile: (newFile: File) => void;
     onDownload: () => void;
     children: React.ReactNode
 }
-export default function Layout({ selectedFile, files, onChangeSelected, onChangeFile, onDownload, children }: LayoutProps) {
+export default function Layout({ selectedFile, file, files, onChangeSelected, onChangeFile, onDownload, children }: LayoutProps) {
     return (
         <div style={{ height: "100%", position: "relative", display: "flex", flexDirection: "column" }}>
             <div style={{ borderBottom: "solid 1px #ccc", }}>
@@ -43,7 +45,7 @@ export default function Layout({ selectedFile, files, onChangeSelected, onChange
                         <IconButton
                             onClick={onDownload}
                             path={mdiDownload}
-                            disabled={true}
+                            disabled={!file}
                         >
                             Download file
                         </IconButton>

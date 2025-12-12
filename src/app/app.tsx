@@ -136,6 +136,7 @@ export default function App() {
   return (
     <Layout
       files={files}
+      file={file}
       selectedFile={selectedFile}
       onChangeSelected={setSelectedFile}
       onChangeFile={onChangeFile}
