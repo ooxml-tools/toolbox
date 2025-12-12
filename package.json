@@ -13,7 +13,7 @@
   "dependencies": {
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
-    "@ooxml-tools/file": "^0.3.1",
+    "@ooxml-tools/file": "^0.4.0",
     "@ooxml-tools/validate": "^0.3.0",
     "comlink": "^4.4.2",
     "monaco-editor": "^0.54.0",

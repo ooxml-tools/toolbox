@@ -6,7 +6,7 @@ export type UploadButtonProps = {children: React.ReactNode, onChange: (e: React.
 export default function UploadButton ({onChange, children, ...rest}: UploadButtonProps) {
   const forId = useId();
   return <div>
-    <label htmlFor={forId} style={{display: "flex", gap: 6, alignItems: "center"}}>
+    <label htmlFor={forId} style={{display: "flex", gap: 6, alignItems: "center", cursor: "pointer"}}>
       {children}
     </label>
     <input {...rest} id={forId} type="file" style={{display: "none"}} onChange={onChange} />
