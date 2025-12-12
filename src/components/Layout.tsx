@@ -1,17 +1,20 @@
 import React from "react";
 import FileSelector from "./FileSelector";
 import UploadButton from "./UploadButton";
-import { mdiGithub, mdiUpload } from "@mdi/js";
+import { mdiDownload, mdiGithub, mdiUpload } from "@mdi/js";
 import Icon from "@mdi/react";
+import { IconButtonAsLink } from "./IconButtonALink";
+import { IconButton } from "./IconButton";
 
 export type LayoutProps = {
     selectedFile?: string | null;
     files: string[];
     onChangeSelected: (newSelectedFile: string) => void;
     onChangeFile: (newFile: File) => void;
+    onDownload: () => void;
     children: React.ReactNode
 }
-export default function Layout({ selectedFile, files, onChangeSelected, onChangeFile, children }: LayoutProps) {
+export default function Layout({ selectedFile, files, onChangeSelected, onChangeFile, onDownload, children }: LayoutProps) {
     return (
         <div style={{ height: "100%", position: "relative", display: "flex", flexDirection: "column" }}>
             <div style={{ borderBottom: "solid 1px #ccc", }}>
@@ -24,17 +27,10 @@ export default function Layout({ selectedFile, files, onChangeSelected, onChange
                         />
                     </h1>
                     <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 16 }}>
-                        <a href="https://github.com/ooxml-tools/toolbox" style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 6,
-                            textDecoration: "none",
-                            color: "inherit",
-                            cursor: "pointer",
-                        }}>
-                            <Icon path={mdiGithub} size={1} />
-                            Github
-                        </a>
+                        <IconButtonAsLink
+                            href="https://github.com/ooxml-tools/toolbox"
+                            path={mdiGithub}
+                        >Github</IconButtonAsLink>
                         <UploadButton onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) {
@@ -44,6 +40,13 @@ export default function Layout({ selectedFile, files, onChangeSelected, onChange
                             <Icon path={mdiUpload} size={1} />
                             Upload file
                         </UploadButton>
+                        <IconButton
+                            onClick={onDownload}
+                            path={mdiDownload}
+                            disabled={true}
+                        >
+                            Download file
+                        </IconButton>
                     </div>
                 </header>
                 <div style={{

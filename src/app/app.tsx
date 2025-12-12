@@ -12,11 +12,14 @@ import ValidationErrors from "@/components/ValidationErrors";
 import Layout from "@/components/Layout";
 import { wrap } from "comlink";
 import { ValidateFn } from "./validate-worker";
+import { ButtonAsLink } from "@/components/ButtonAsLink";
 
-function ButtonAsLink ({children, ...props}: {children: ReactNode} & ButtonHTMLAttributes<HTMLButtonElement>) {
-  return <button {...props} style={{display: "inline-block", background: "none", border: "none", fontFamily: "inherit", fontSize: "inherit", textDecoration: "underline", cursor: "pointer", padding: 0}}>
-    {children}
-  </button>
+
+export function download(url: string, filename: string) {
+  const aEl = document.createElement('a')
+  aEl.setAttribute('href', url)
+  aEl.setAttribute('download', filename)
+  aEl.click()
 }
 
 export default function App() {
@@ -79,6 +82,13 @@ export default function App() {
     }
   }
 
+  const onValidate = async () => {
+    if (file) {
+      const newErrors = await workerRef.current?.(await file?.pack("uint8array"), getFileFormatFromName(file.type));
+      setErrors(newErrors ?? []);
+    }
+  }
+
   const files = useMemo(() => {
     if (file) {
       return file.list().filter(filepath => {
@@ -112,12 +122,24 @@ export default function App() {
     }
   };
 
+  const onDownload = async () => {
+    if (file) {
+      const buffer = await file.pack("arraybuffer");
+      const blob = new Blob([new Uint8Array(buffer)], {
+        type: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`,
+      })
+      const url = URL.createObjectURL(blob)
+      download(url, "download.docx");
+    }
+  }
+
   return (
     <Layout
       files={files}
       selectedFile={selectedFile}
       onChangeSelected={setSelectedFile}
       onChangeFile={onChangeFile}
+      onDownload={onDownload}
     >
       {!file && state === "IDLE" &&
         <div style={{flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#eee"}}>
@@ -131,13 +153,12 @@ export default function App() {
               <Icon path={mdiUpload} size={1} />
               Upload file
             </UploadButton>
-            <div style={{display: "flex", flexDirection: "row", alignItems: "center", gap: 12}}>
-              <ButtonAsLink onClick={onClickBlankDocx}>
-                Blank docx
-              </ButtonAsLink>
-              <ButtonAsLink onClick={onClickBlankXlsx}>
-                Blank xlsx
-              </ButtonAsLink>
+            <div>
+              Or create an <ButtonAsLink onClick={onClickBlankDocx}>
+                empty docx
+              </ButtonAsLink> or <ButtonAsLink onClick={onClickBlankXlsx}>
+                empty xlsx
+              </ButtonAsLink>.
             </div>
           </div>
         </div>
@@ -147,7 +168,7 @@ export default function App() {
         <LoadingState />
       </div>}
       {file && state === "IDLE" && <div style={{display: "flex", flexDirection: "column", flex: 1, height: "100%"}}>
-        <FileViewer file={file} selectedFile={selectedFile} />
+        <FileViewer file={file} selectedFile={selectedFile} onChange={onValidate} />
         <div style={{borderTop: "solid 2px #ddd", overflowY: "hidden", maxHeight: "50%"}}>
           <ValidationErrors errors={errors} />
         </div>
