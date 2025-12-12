@@ -17,7 +17,7 @@
     "@ooxml-tools/validate": "^0.3.0",
     "comlink": "^4.4.2",
     "monaco-editor": "^0.54.0",
-    "next": "^16.0.3",
+    "next": "^16.0.10",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "xml-formatter": "^3.6.4",
