@@ -4,9 +4,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import xmlFormat from 'xml-formatter';
 
 type MonacoEditorProps = {
-    data?: ArrayBuffer
+    data?: ArrayBuffer;
+    readOnly: boolean;
+    onChange?: (editor: editor.IStandaloneCodeEditor) => void;
 }
-export default function MonacoEditor ({data}: MonacoEditorProps) {
+export default function MonacoEditor ({data, readOnly, onChange}: MonacoEditorProps) {
     const ref = useRef(null);
     const [instance, setInstance] = useState<editor.IStandaloneCodeEditor | null>(null);
 
@@ -25,7 +27,7 @@ export default function MonacoEditor ({data}: MonacoEditorProps) {
             const monInstance = editor.create(ref.current, {
                 value: "",
                 language: 'xml',
-                readOnly: true,
+                readOnly,
                 automaticLayout: true,
             });
             setInstance(monInstance)
@@ -36,6 +38,18 @@ export default function MonacoEditor ({data}: MonacoEditorProps) {
             }
         }
     }, [ref])
+
+    useEffect(() => {
+        if (instance && onChange) {
+            const fn = (event: editor.IModelContentChangedEvent) => {
+                onChange(instance);
+            }
+            const disposable = instance?.getModel()?.onDidChangeContent(fn);
+            return () => {
+                disposable?.dispose();
+            }
+        }
+    }, [instance])
 
     useEffect(() => {
         if (instance && xml) {
