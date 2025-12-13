@@ -1,6 +1,6 @@
 'use client'
 import JSZip from "jszip";
-import {open, formatFromFilename, OfficeOpenXml, docxBlankFiles, xlsxBlankFiles} from "@ooxml-tools/file"
+import {open, formatFromFilename, OfficeOpenXml, docxBlankFiles, xlsxBlankFiles, getMimeType} from "@ooxml-tools/file"
 import { getFileFormatFromName, ValidationResult } from "@ooxml-tools/validate"
 import { ButtonHTMLAttributes, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import Icon from '@mdi/react';
@@ -126,10 +126,10 @@ export default function App() {
     if (file) {
       const buffer = await file.pack("arraybuffer");
       const blob = new Blob([new Uint8Array(buffer)], {
-        type: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`,
+        type: getMimeType(file.type),
       })
       const url = URL.createObjectURL(blob)
-      download(url, "download.docx");
+      download(url, `download.${file.type}`);
     }
   }
 
