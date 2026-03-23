@@ -15,11 +15,10 @@ import { RegisterHTMLHandler } from "@mathjax/src/js/handlers/html.js";
 import { SerializedMmlVisitor } from "@mathjax/src/js/core/MmlTree/SerializedMmlVisitor.js";
 import { STATE } from "@mathjax/src/js/core/MathItem.js";
 
-import { cdata, safeXml } from "@ooxml-tools/xml";
 import { docxBlankFiles, getMimeType, OfficeOpenXml } from "@ooxml-tools/file";
 import { useId, useRef } from "react";
 
-export function texToMathML(math: string) {
+function texToMathML(math: string) {
   const adaptor = liteAdaptor({});
   RegisterHTMLHandler(adaptor);
 
@@ -40,19 +39,7 @@ export function texToMathML(math: string) {
   return visitor.visitTree(mml);
 }
 
-const PARSER_REGEXPS = {
-  math: /(\$\$(?:[^$]|$[^$])*\$\$)/, // Matches something like "$$x+y$$"
-  other: /([^$]+)/, // Matches anything else up to "$"
-};
-
-const MATH_INDEX = 1;
-const OTHER_INDEX = 2;
-
-function joinRegexps(regexps: RegExp[], flags: string) {
-  return new RegExp(`(?:${regexps.map((re) => re.source).join("|")})`, flags);
-}
-
-export function mathMlToOmml(text: string) {
+function mathMlToOmml(text: string) {
   return mml2omml(
     text,
     { disableDecode: true },
