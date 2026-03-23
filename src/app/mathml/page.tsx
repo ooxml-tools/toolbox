@@ -152,10 +152,10 @@ const INITIAL_MATHML = `
 `.trim();
 
 const INITIAL_TEX = `
-\def\d{\mathrm{d}}
+\\def\\d{\\mathrm{d}}
 
-\oint_C \vec{B}\circ \d\vec{l} = \mu_0 \left( I_{\text{enc}} + \varepsilon_0 \frac{\d}{\d t} \int_S {\vec{E} \circ \hat{n}}\; \d a \right)
-`
+\\oint_C \\vec{B}\\circ \\d\\vec{l} = \\mu_0 \\left( I_{\\text{enc}} + \\varepsilon_0 \\frac{\\d}{\\d t} \\int_S {\\vec{E} \\circ \\hat{n}}\\; \\d a \\right)
+`.trim()
 
 export default function MathMlPage () {
   const mathMlRef = useRef<HTMLTextAreaElement>(null);
