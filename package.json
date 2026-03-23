@@ -11,14 +11,18 @@
     "test": "exit 0"
   },
   "dependencies": {
+    "@mathjax/src": "^4.1.1",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@ooxml-tools/file": "^0.6.1",
     "@ooxml-tools/validate": "^0.4.3",
+    "@ooxml-tools/xml": "^0.8.0",
     "comlink": "^4.4.2",
+    "mathml2omml": "^0.5.0",
     "monaco-editor": "^0.55.1",
     "next": "^16.0.10",
     "react": "^19.2.0",
+    "react-aria-components": "^1.14.0",
     "react-dom": "^19.2.0",
     "xml-formatter": "^3.6.4",
     "xml2json": "^0.12.0"
