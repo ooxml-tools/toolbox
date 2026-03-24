@@ -157,6 +157,98 @@ const INITIAL_TEX = `
 \\oint_C \\vec{B}\\circ \\d\\vec{l} = \\mu_0 \\left( I_{\\text{enc}} + \\varepsilon_0 \\frac{\\d}{\\d t} \\int_S {\\vec{E} \\circ \\hat{n}}\\; \\d a \\right)
 `.trim()
 
+const TEX_EXAMPLES = [
+  {
+    name: "super simple",
+    math: `2^7`.trim()
+  },
+  {
+    name: "simple",
+    math: `
+\\def\\d{\\mathrm{d}}
+
+\\oint_C \\vec{B}\\circ \\d\\vec{l} = \\mu_0 \\left( I_{\\text{enc}} + \\varepsilon_0 \\frac{\\d}{\\d t} \\int_S {\\vec{E} \\circ \\hat{n}}\\; \\d a \\right)
+    `.trim()
+  },
+  {
+    // Generated from chatgpt
+    name: "complex",
+    math: `
+\\begin{aligned}
+\\mathcal{F}(x)
+&=
+\\underbrace{
+\\sum_{n=1}^{\\infty}
+\\frac{\\alpha_n x^n}{\\sqrt[n]{1+\\beta_n}}
+}_{\\text{infinite series}}
+\\;+\\;
+\\underbrace{
+\\int_{0}^{\\pi}
+\\frac{\\sin^2 \\theta}{1+\\cos \\theta}\\,d\\theta
+}_{\\text{definite integral}}
+\\;+\\;
+\\underbrace{
+\\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h}
+}_{\\text{limit / derivative}}
+\\\\[1em]
+&\\quad
++\\;
+\\left(
+\\begin{array}{cc}
+a_{11} & a_{12} \\\\
+a_{21} & a_{22}
+\\end{array}
+\\right)
+\\binom{u}{v}
+\\;+\\;
+\\left\\{
+\\begin{array}{ll}
+x^2, & x \\ge 0, \\\\
+-x,  & x < 0
+\\end{array}
+\\right.
+\\\\[1em]
+&\\quad
++\\;
+\\vec{v}\\cdot\\vec{w}
+\\;+\\;
+\\widehat{ABC}
+\\;+\\;
+\\overline{z}
+\\;+\\;
+\\widetilde{f\\ast g}
+\\;+\\;
+\\cancel{y}
+\\\\[1em]
+&\\quad
++\\;
+\\prod_{k=1}^{m} (1+x_k)
+\\;+\\;
+\\bigsqcup_{i\\in I} A_i
+\\;+\\;
+\\bigcap_{j=1}^{r} B_j
+\\;+\\;
+\\bigoplus_{\\ell=1}^{N} V_\\ell
+\\\\[1em]
+&\\quad
++\\;
+x_{i_1,\\dots,i_r}^{(m)}
+\\overset{\\phi}{\\longrightarrow}
+y^{\\prime\\prime}
+\\iff
+\\forall \\varepsilon > 0\\;\\exists \\delta > 0
+\\\\[1em]
+&\\quad
++\\;
+\\overbrace{1+1+\\cdots+1}^{n\\text{ terms}}
+\\;=\\;
+\\underbrace{n}_{\\text{count}}
+\\end{aligned}
+
+    `.trim()
+  }
+]
+
 export default function MathMlPage () {
   const mathMlRef = useRef<HTMLTextAreaElement>(null);
   const texRef = useRef<HTMLTextAreaElement>(null);
@@ -191,6 +283,25 @@ export default function MathMlPage () {
             <div>
                 <label htmlFor={texId}>Tex</label>
                 <textarea id={texId} style={{display: "block", width: "100%", height: 200}} ref={texRef} defaultValue={INITIAL_TEX}></textarea>
+                <div>
+                  Examples: {TEX_EXAMPLES.map((example, exampleIndex) => {
+                    return <>
+                      <button
+                        style={{
+                          all: "unset",
+                          fontFamily: "inherit",
+                          fontSize: "inherit",
+                          cursor: "pointer",
+                          textDecoration: "underline"
+                        }}
+                        onClick={() => texRef.current.value = example.math}
+                      >
+                        {example.name}
+                      </button>
+                      {exampleIndex < TEX_EXAMPLES.length -1 ? ", " : ""}
+                    </>
+                  })}
+                </div>
                 <button onClick={onClickTexConvert}>convert</button>
             </div>
         </div>
