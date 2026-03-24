@@ -294,7 +294,11 @@ export default function MathMlPage () {
                           cursor: "pointer",
                           textDecoration: "underline"
                         }}
-                        onClick={() => texRef.current.value = example.math}
+                        onClick={() => {
+                          if (texRef.current) {
+                            texRef.current.value = example.math
+                          }
+                        }}
                       >
                         {example.name}
                       </button>
