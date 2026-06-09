@@ -36,5 +36,10 @@
     "eslint-config-next": "^16.2.1",
     "monaco-editor-webpack-plugin": "^7.1.0",
     "typescript": "^5"
+  },
+  "packageManager": "pnpm@11.2.0",
+  "engines": {
+    "node": "22",
+    "pnpm": ">=11"
   }
 }

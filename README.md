@@ -18,7 +18,7 @@ You can see a demo at <https://ooxml-tools.github.io/toolbox/>
 ## Development
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## License

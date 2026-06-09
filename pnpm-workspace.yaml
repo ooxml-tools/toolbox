@@ -1,0 +1,8 @@
+allowBuilds:
+  node-expat: false
+  sharp: true
+  unrs-resolver: false
+minimumReleaseAgeExclude:
+- "@ooxml-tools/file"
+- "@ooxml-tools/xml"
+- "@ooxml-tools/validate"
