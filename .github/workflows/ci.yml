@@ -36,7 +36,7 @@ jobs:
           path: ./out
 
   release:
-    needs: build
+    needs: test
     if: github.ref == 'refs/head/main'
     runs-on: ubuntu-latest
 
