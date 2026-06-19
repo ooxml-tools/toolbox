@@ -37,6 +37,7 @@ jobs:
 
   release:
     needs: build
+    if: github.ref == 'refs/head/main'
     runs-on: ubuntu-latest
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
