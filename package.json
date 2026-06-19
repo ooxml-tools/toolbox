@@ -36,7 +36,7 @@
     "eslint": "^10.1.0",
     "eslint-config-next": "^16.2.1",
     "monaco-editor-webpack-plugin": "^7.1.0",
-    "typescript": "^5"
+    "typescript": "^6"
   },
   "packageManager": "pnpm@11.2.0",
   "engines": {
