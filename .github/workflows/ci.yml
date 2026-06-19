@@ -31,9 +31,6 @@ jobs:
       - run: pnpm ci
       - run: pnpm test
       - run: pnpm run build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
 
   release:
     needs: test
