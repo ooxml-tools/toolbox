@@ -1,0 +1,3 @@
+# .github/dependabot.yml
+cooldown:
+  default-days: 1
