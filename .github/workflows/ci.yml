@@ -13,7 +13,30 @@ on:
       - "**.md"
 
 jobs:
-  build:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          cache: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.x"
+          registry-url: "https://registry.npmjs.org"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: pnpm ci
+      - run: pnpm test
+      - run: pnpm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  release:
+    needs: build
     runs-on: ubuntu-latest
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
@@ -39,7 +62,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: pnpm ci
-      - run: pnpm test
       - run: pnpm run build
       - uses: actions/upload-pages-artifact@v3
         with:
