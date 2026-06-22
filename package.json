@@ -24,7 +24,7 @@
     "next": "^16.0.10",
     "react": "^19.2.7",
     "react-aria-components": "^1.14.0",
-    "react-dom": "^19.2.0",
+    "react-dom": "^19.2.7",
     "xml-formatter": "^3.6.4",
     "xml2json": "^0.12.0"
   },
