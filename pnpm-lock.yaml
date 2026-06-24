@@ -24,8 +24,8 @@ importers:
         specifier: ^0.4.6
         version: 0.4.6
       '@ooxml-tools/xml':
-        specifier: ^0.8.0
-        version: 0.8.0
+        specifier: ^0.8.1
+        version: 0.8.1
       comlink:
         specifier: ^4.4.2
         version: 4.4.2
@@ -510,9 +510,9 @@ packages:
     engines: {node: '>=20.x', pnpm: '>=11'}
     hasBin: true
 
-  '@ooxml-tools/xml@0.8.0':
-    resolution: {integrity: sha512-x2hcCDiSKqpuiWpTxVRv07jnBpWxGHeA6nxwwMVLaUNe4ZLDkYt9ezU6mlNazX7YLEdP13B3KObV95VK4Yclfw==}
-    engines: {node: '>=20.x'}
+  '@ooxml-tools/xml@0.8.1':
+    resolution: {integrity: sha512-e/9zHKZrzZhsKxv9jqEOhvDzoS2wG+TeHFQumcMBYEZT11gOoTQWGQlDMg3TaEuafnaYi4dfxJjJ3gqaLe2GJg==}
+    engines: {node: '>=20.x', pnpm: '>=11'}
 
   '@react-aria/autocomplete@3.0.0-rc.6':
     resolution: {integrity: sha512-uymUNJ8NW+dX7lmgkHE+SklAbxwktycAJcI5lBBw6KPZyc0EdMHC+/Fc5CUz3enIAhNwd2oxxogcSHknquMzQA==}
@@ -1132,6 +1132,9 @@ packages:
 
   '@types/node@25.9.3':
     resolution: {integrity: sha512-603BddQMv3pUcr4U2dhujk83N2tTDVr/34wII2B6bJy6g+8WD6yUb11jszNs0gdi4PesVWl7ABt8nYMVpnLUcg==}
+
+  '@types/node@25.9.4':
+    resolution: {integrity: sha512-dszCsrKb5U7ZsVZBWiHFklTloVl0mSEnWH/iZXfZUlI4rzCUnsvGmgqfuVRHL54ugE7/wRuxEIXRa2iMZ+BG6g==}
 
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
@@ -3347,7 +3350,7 @@ snapshots:
       chalk: 5.6.2
       yargs: 18.0.0
 
-  '@ooxml-tools/xml@0.8.0':
+  '@ooxml-tools/xml@0.8.1':
     dependencies:
       xml-js: 1.6.11
 
@@ -4428,6 +4431,10 @@ snapshots:
   '@types/json5@0.0.29': {}
 
   '@types/node@25.9.3':
+    dependencies:
+      undici-types: 7.24.6
+
+  '@types/node@25.9.4':
     dependencies:
       undici-types: 7.24.6
 
@@ -5626,7 +5633,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 25.9.3
+      '@types/node': 25.9.4
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
