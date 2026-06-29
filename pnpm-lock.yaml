@@ -18,8 +18,8 @@ importers:
         specifier: ^1.6.1
         version: 1.6.1
       '@ooxml-tools/file':
-        specifier: ^0.6.1
-        version: 0.6.1
+        specifier: ^0.6.5
+        version: 0.6.5
       '@ooxml-tools/validate':
         specifier: ^0.4.6
         version: 0.4.6
@@ -504,9 +504,9 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@ooxml-tools/file@0.6.1':
-    resolution: {integrity: sha512-Y+QMAqqI4V9b0fqxu3nZ5nWd5QYa+RTUlI+hybNSovtWS45SINkMzFyI+/AQkHWt+8craGwrA0YIMqYoNZOB3g==}
-    engines: {node: '>=20.x'}
+  '@ooxml-tools/file@0.6.5':
+    resolution: {integrity: sha512-hwAYFAFIWHWSsCLfJua91sGBoGJGhdxDwZmC9U+122yETWqaCMfcw0sf9JnkUICPfbQyv/sgFBnQiwWrpeuXkw==}
+    engines: {node: '>=20.x', pnpm: '>=11'}
     hasBin: true
 
   '@ooxml-tools/validate@0.4.6':
@@ -1495,6 +1495,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  baseline-browser-mapping@2.10.40:
+    resolution: {integrity: sha512-BSSLZ9/Cjjv7Gtj5B68ZzXcXUg8iOf3fme+FCuh8rC/Go+Kmh8cox7M3A8dolou16s64QjLPOSdngh7GxXvkSw==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   big.js@5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
 
@@ -1514,6 +1519,11 @@ packages:
 
   browserslist@4.28.2:
     resolution: {integrity: sha512-48xSriZYYg+8qXna9kwqjIVzuQxi+KYWp2+5nCYnYKPTr0LvD89Jqk2Or5ogxz0NUMfIjhh2lIUX/LyX9B4oIg==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+
+  browserslist@4.28.4:
+    resolution: {integrity: sha512-MTc8i/x9jBQd1iMw2CFGS+rwMa07eYjLR0CCTLDACl9xhxy+nIs3KeML/biicXtk9JrZ6dnnTatmc7ErPXIxqw==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
@@ -1644,6 +1654,9 @@ packages:
   electron-to-chromium@1.5.375:
     resolution: {integrity: sha512-ZWP5eB4BVPW/ZYo9252hQZHZ5XavtsTgpbhcmMmRwymavC5AsLWQWBPaKMeNd2LW0KGby5HPXvj7+sr4ta5j/Q==}
 
+  electron-to-chromium@1.5.380:
+    resolution: {integrity: sha512-W6d5AbuEoRayO447cqrg6lKJIlscgRnnxOZl/08kfV71BQDoEBC7Wwis68z87LjyK6f4kWyTaubuDbhHKrZkbA==}
+
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
 
@@ -1654,8 +1667,8 @@ packages:
     resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==}
     engines: {node: '>= 4'}
 
-  enhanced-resolve@5.24.0:
-    resolution: {integrity: sha512-SkE2t82KlkkxQRVMVLAGKxLfORGQfrkx5dkj+vlgXRVNEdPc4eZcR+J/Fvj8C+yKSFH5L0q3NFlyufOVQnCcYQ==}
+  enhanced-resolve@5.24.1:
+    resolution: {integrity: sha512-7DdUaTjmNwMcH2gLr1qycesKII3BK4RLy/mdAb7x10Lq7bR4aNKHt1BR1ZALSv0rPM/hF5wYF0PhGop/rJm8vw==}
     engines: {node: '>=10.13.0'}
 
   es-abstract-get@1.0.0:
@@ -2235,8 +2248,8 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  lru-cache@11.2.7:
-    resolution: {integrity: sha512-aY/R+aEsRelme17KGQa/1ZSIpLpNYYrhcrepKTZgE+W3WM16YMCaPwOHLHsmopZHELU0Ojin1lPVxKR0MihncA==}
+  lru-cache@11.5.1:
+    resolution: {integrity: sha512-RPimw/7aMdv2oqRrxKwvZXcPfwBrn/JZ2xYcY9Hus/6LaS3VOAKVWKWgNLCFSiOm1ESXinjsDlidVU7JlnCN2A==}
     engines: {node: 20 || >=22}
 
   lru-cache@5.1.1:
@@ -2354,6 +2367,10 @@ packages:
 
   node-releases@2.0.48:
     resolution: {integrity: sha512-1uz8041X6LoI6ZSdZacM9lVY28vuzDlSKitnpbSNK0RfKoIJkX29NBPVEFXhnuSuEOA9Ww0xnPJ+ILWbGAv8DA==}
+    engines: {node: '>=18'}
+
+  node-releases@2.0.50:
+    resolution: {integrity: sha512-J6l92tKHX6w8Jy5nO1Vuc01NoIiRGi/d6qBKVxh+IQ8Cr3b6HbVNfKiF8ZpFKufTwpwxMmce2W3iQZ861ZRyTg==}
     engines: {node: '>=18'}
 
   object-assign@4.1.1:
@@ -3317,7 +3334,7 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@ooxml-tools/file@0.6.1':
+  '@ooxml-tools/file@0.6.5':
     dependencies:
       glob: 13.0.6
       jszip: 3.10.1
@@ -4797,6 +4814,8 @@ snapshots:
 
   baseline-browser-mapping@2.10.38: {}
 
+  baseline-browser-mapping@2.10.40: {}
+
   big.js@5.2.2: {}
 
   bindings@1.5.0:
@@ -4823,6 +4842,14 @@ snapshots:
       electron-to-chromium: 1.5.375
       node-releases: 2.0.48
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
+
+  browserslist@4.28.4:
+    dependencies:
+      baseline-browser-mapping: 2.10.40
+      caniuse-lite: 1.0.30001799
+      electron-to-chromium: 1.5.380
+      node-releases: 2.0.50
+      update-browserslist-db: 1.2.3(browserslist@4.28.4)
 
   buffer-from@1.1.2: {}
 
@@ -4942,13 +4969,15 @@ snapshots:
 
   electron-to-chromium@1.5.375: {}
 
+  electron-to-chromium@1.5.380: {}
+
   emoji-regex@10.6.0: {}
 
   emoji-regex@9.2.2: {}
 
   emojis-list@3.0.0: {}
 
-  enhanced-resolve@5.24.0:
+  enhanced-resolve@5.24.1:
     dependencies:
       graceful-fs: 4.2.11
       tapable: 2.3.3
@@ -5075,7 +5104,7 @@ snapshots:
       eslint: 10.5.0
       eslint-import-resolver-node: 0.3.10
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint@10.5.0))(eslint@10.5.0)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1)(eslint@10.5.0)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint@10.5.0))(eslint@10.5.0))(eslint@10.5.0)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@10.5.0)
       eslint-plugin-react: 7.37.5(eslint@10.5.0)
       eslint-plugin-react-hooks: 7.1.1(eslint@10.5.0)
@@ -5108,7 +5137,7 @@ snapshots:
       tinyglobby: 0.2.17
       unrs-resolver: 1.12.2
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1)(eslint@10.5.0)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint@10.5.0))(eslint@10.5.0))(eslint@10.5.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -5123,7 +5152,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1)(eslint@10.5.0):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.61.1(eslint@10.5.0)(typescript@6.0.3))(eslint@10.5.0))(eslint@10.5.0))(eslint@10.5.0):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9
@@ -5679,7 +5708,7 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  lru-cache@11.2.7: {}
+  lru-cache@11.5.1: {}
 
   lru-cache@5.1.1:
     dependencies:
@@ -5785,6 +5814,8 @@ snapshots:
 
   node-releases@2.0.48: {}
 
+  node-releases@2.0.50: {}
+
   object-assign@4.1.1: {}
 
   object-inspect@1.13.4: {}
@@ -5862,7 +5893,7 @@ snapshots:
 
   path-scurry@2.0.2:
     dependencies:
-      lru-cache: 11.2.7
+      lru-cache: 11.5.1
       minipass: 7.1.3
 
   picocolors@1.1.1: {}
@@ -6432,6 +6463,12 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
+  update-browserslist-db@1.2.3(browserslist@4.28.4):
+    dependencies:
+      browserslist: 4.28.4
+      escalade: 3.2.0
+      picocolors: 1.1.1
+
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
@@ -6458,9 +6495,9 @@ snapshots:
       '@webassemblyjs/wasm-parser': 1.14.1
       acorn: 8.17.0
       acorn-import-phases: 1.0.4(acorn@8.17.0)
-      browserslist: 4.28.2
+      browserslist: 4.28.4
       chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.24.0
+      enhanced-resolve: 5.24.1
       es-module-lexer: 2.1.0
       eslint-scope: 5.1.1
       events: 3.3.0
